@@ -22,10 +22,37 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->selectButton('Ajouter')->form();
-        $form['user[username]'] = 'autre';
-        $form['user[password][first]'] = 'autre';
-        $form['user[password][second]'] = 'autre';
-        $form['user[email]'] = 'autre@autre.org';
+        $form['user[username]'] = 'Bonjourk';
+        $form['user[password][first]'] = 'test';
+        $form['user[password][second]'] = 'test';
+        $form['user[email]'] = 'bonjourk@example.org';
+        $client->submit($form);
+
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+
+        $crawler = $client->followRedirect();
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(1, $crawler->filter('div.alert-success')->count());
+    }
+
+    public function testEditAction()
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/users/2/edit');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+
+        static::assertSame(1, $crawler->filter('input[name="user[username]"]')->count());
+        static::assertSame(1, $crawler->filter('input[name="user[password][first]"]')->count());
+        static::assertSame(1, $crawler->filter('input[name="user[password][second]"]')->count());
+        static::assertSame(1, $crawler->filter('input[name="user[email]"]')->count());
+
+        $form = $crawler->selectButton('Modifier')->form();
+        $form['user[username]'] = 'nouveauc';
+        $form['user[password][first]'] = 'nouveaubd';
+        $form['user[password][second]'] = 'nouveaubd';
+        $form['user[email]'] = 'nouveaud@nouveau.org';
         $client->submit($form);
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
