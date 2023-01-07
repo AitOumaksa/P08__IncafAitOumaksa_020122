@@ -22,10 +22,10 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->selectButton('Ajouter')->form();
-        $form['user[username]'] = 'Bonjourk';
+        $form['user[username]'] = 'Bonjourkk';
         $form['user[password][first]'] = 'test';
         $form['user[password][second]'] = 'test';
-        $form['user[email]'] = 'bonjourk@example.org';
+        $form['user[email]'] = 'bonjourkk@example.org';
         $client->submit($form);
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
