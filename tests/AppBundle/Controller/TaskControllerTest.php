@@ -147,7 +147,7 @@ class TaskControllerTest extends WebTestCase
         $form['_password'] = 'nouveaubd';
         $client->submit($form);
 
-        $client->request('GET', '/tasks/15/delete');
+        $client->request('GET', '/tasks/16/delete');
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
 
