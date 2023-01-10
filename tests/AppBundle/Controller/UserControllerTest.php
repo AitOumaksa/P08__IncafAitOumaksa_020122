@@ -1,6 +1,5 @@
 <?php
-
-namespace App\Tests\Controller;
+namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -22,10 +21,10 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->selectButton('Ajouter')->form();
-        $form['user[username]'] = 'Bonjoure';
+        $form['user[username]'] = 'Bonjoureo';
         $form['user[password][first]'] = 'test';
         $form['user[password][second]'] = 'test';
-        $form['user[email]'] = 'bonjoure@example.org';
+        $form['user[email]'] = 'bonjoureo@example.org';
         $client->submit($form);
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Controller;
+namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -147,7 +147,7 @@ class TaskControllerTest extends WebTestCase
         $form['_password'] = 'nouveaubd';
         $client->submit($form);
 
-        $client->request('GET', '/tasks/12/delete');
+        $client->request('GET', '/tasks/15/delete');
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
 
