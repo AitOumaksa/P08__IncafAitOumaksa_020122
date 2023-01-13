@@ -1,8 +1,6 @@
 <?php
 
-
 namespace AppBundle\Security;
-
 
 use AppBundle\Entity\Task;
 use AppBundle\Entity\User;
@@ -19,6 +17,7 @@ class TaskVoter extends Voter
     {
         $this->decisionManager = $decisionManager;
     }
+
 
     protected function supports($attribute, $subject)
     {
@@ -37,9 +36,10 @@ class TaskVoter extends Voter
             return true;
         }
 
+
         switch ($attribute) {
             case self::MANAGE:
-                return $this->canManage($user, $task);
+                return $this->decisionManager->decide($token, array('ROLE_ADMIN'))|| $user === $task->getUser();
             
                 break;
         }
@@ -47,9 +47,5 @@ class TaskVoter extends Voter
         return false;
     }
 
-    private function canManage(User $user, Task $task)
-    {
-        if($this->decisionManager->decide($user, array('ROLE_ADMIN'))|| $user === $task->getUser()) return true;
-        return false;
-    }
+ 
 }
