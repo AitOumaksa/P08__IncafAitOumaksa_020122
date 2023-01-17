@@ -69,10 +69,11 @@ class UserTest extends WebTestCase
         $this->assertNotContains($task, $user->getTasks());
     }
 
-    public function testGetRoles()
+    public function testGetSetRoles()
     {
         $user = new User();
-        $this->assertEquals(['ROLE_USER'], $user->getRoles());
+        $user->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
+        $this->assertEquals(['ROLE_USER', 'ROLE_ADMIN'], $user->getRoles());
     }
 
     public function testGetTasks()
@@ -86,6 +87,14 @@ class UserTest extends WebTestCase
         $this->assertCount(2, $tasks);
         $this->assertSame($task1, $tasks[0]);
         $this->assertSame($task2, $tasks[1]);
+    }
+
+    public function testAddRole()
+    {
+        $user = new User();
+        $user->setRoles(['ROLE_USER']);
+        $user->addRole('ROLE_ADMIN');
+        $this->assertContains('ROLE_ADMIN', $user->getRoles());
     }
 
 }

@@ -72,6 +72,7 @@ class TaskController extends Controller
      */
     public function toggleTaskAction(Task $task)
     {
+        $this->denyAccessUnlessGranted(TaskVoter::MANAGE, $task);
         $task->toggle(!$task->isDone());
         $this->getDoctrine()->getManager()->flush();
 

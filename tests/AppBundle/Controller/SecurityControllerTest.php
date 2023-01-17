@@ -25,8 +25,8 @@ class SecurityControllerTest extends WebTestCase
         $this->assertSame(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'nouveauc';
-        $form['_password'] = 'nouveaubd';
+        $form['_username'] = 'insafeaitoumaksa';
+        $form['_password'] = 'admin';
         $client->submit($form); 
 
         $crawler = $client->followRedirect();
