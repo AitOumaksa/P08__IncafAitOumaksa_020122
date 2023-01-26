@@ -1,0 +1,4 @@
+Sun Jan 22 17:34:23 2023 (16640): [Info] opcache extension is not loaded
+Sun Jan 22 17:34:23 2023 (16640): [Info] APCu extension is not loaded
+Sun Jan 22 17:34:23 2023 (16640): [Info] pgsql extension is not loaded, Blackfire SQL analyzer will be disabled for pgsql SQL queries
+Sun Jan 22 17:34:23 2023 (16640): [Info] oci8 extension is not loaded, Blackfire SQL analyzer will be disabled for oci SQL queries
