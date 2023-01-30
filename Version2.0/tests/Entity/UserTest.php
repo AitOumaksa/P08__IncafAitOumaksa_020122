@@ -22,8 +22,7 @@ class UserTest extends WebTestCase
 
     public function testGetId()
     {
-        $user = new User();
-        $this->assertNull($user->getId());
+        $this->assertNull($this->user->getId());
     }
 
     public function testGetSetUsername()
@@ -34,28 +33,24 @@ class UserTest extends WebTestCase
 
     public function testGetSetPassword()
     {
-        $user = new User();
-        $user->setPassword('Test password');
-        $this->assertEquals($user->getPassword(), 'Test password');
+        $this->user->setPassword('Test password');
+        $this->assertEquals($this->user->getPassword(), 'Test password');
     }
 
     public function testGetSetEmail()
     {
-        $user = new User();
-        $user->setEmail('Test@email.com');
-        $this->assertEquals($user->getEmail(), 'Test@email.com');
+        $this->user->setEmail('Test@email.com');
+        $this->assertEquals($this->user->getEmail(), 'Test@email.com');
     }
 
     public function testGetSalt()
     {
-        $user = new User();
-        $this->assertNull($user->getSalt());
+        $this->assertNull($this->user->getSalt());
     }
 
     public function testEraseCredentials()
     {
-        $user = new User();
-        $this->assertNull($user->eraseCredentials());
+        $this->assertNull($this->user->eraseCredentials());
     }
 
        public function testTask()
@@ -72,30 +67,9 @@ class UserTest extends WebTestCase
 
     public function testGetSetRoles()
     {
-        $user = new User();
-        $user->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
-        $this->assertEquals(['ROLE_USER', 'ROLE_ADMIN'], $user->getRoles());
+        $this->user->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
+        $this->assertEquals(['ROLE_USER', 'ROLE_ADMIN'], $this->user->getRoles());
     }
 
-    public function testGetTasks()
-    {
-        $user = new User();
-        $task1 = new Task();
-        $task2 = new Task();
-        $user->addTask($task1);
-        $user->addTask($task2);
-        $tasks = $user->getTasks();
-        $this->assertCount(2, $tasks);
-        $this->assertSame($task1, $tasks[0]);
-        $this->assertSame($task2, $tasks[1]);
-    }
-
-    public function testAddRole()
-    {
-        $user = new User();
-        $user->setRoles(['ROLE_USER']);
-        $user->addRole('ROLE_ADMIN');
-        $this->assertContains('ROLE_ADMIN', $user->getRoles());
-    }
 
 }

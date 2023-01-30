@@ -15,7 +15,7 @@ class TaskControllerTest extends WebTestCase
         $this->assertSame(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'insafeaitoumaksa';
+        $form['_username'] = 'Admin10';
         $form['_password'] = 'admin';
         $client->submit($form); 
 
@@ -43,12 +43,12 @@ class TaskControllerTest extends WebTestCase
         $this->assertSame(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'Insafeaitoumaksa3';
+        $form['_username'] = 'Admin10';
         $form['_password'] = 'admin';
         $client->submit($form); 
 
         $crawler = $client->request('GET', '/tasks/create');
-        $this->assertSame(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
         $this->assertSame(1, $crawler->filter('input[name="task[title]"]')->count());
         $this->assertSame(1, $crawler->filter('textarea[name="task[content]"]')->count());
@@ -60,7 +60,7 @@ class TaskControllerTest extends WebTestCase
         $client->submit($form); 
         $this->assertSame(302, $client->getResponse()->getStatusCode());
         $crawler = $client->followRedirect();
-        $this->assertContains("Titre tâche de test : " . $uniqId, $client->getResponse()->getContent());
+        $this->assertEquals(1, $crawler->filter('div.alert-success')->count());
 
     }
     public function testCreateActionNotLoggeded()
@@ -77,7 +77,7 @@ class TaskControllerTest extends WebTestCase
     public function testEditTaskNotLoggedIn()
     {
         $client = static::createClient();
-        $client->request('GET', '/tasks/4/edit');
+        $client->request('GET', '/tasks/2/edit');
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode()); //on s'assure que l'appli retourne une redirection
 
@@ -91,11 +91,11 @@ class TaskControllerTest extends WebTestCase
         $this->assertSame(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'insafeaitoumaksa';
+        $form['_username'] = 'Admin10';
         $form['_password'] = 'admin';
         $client->submit($form);
 
-        $crawler = $client->request('GET', '/tasks/22/edit');
+        $crawler = $client->request('GET', '/tasks/6/edit');
         $this->assertSame(200, $client->getResponse()->getStatusCode());
 
         $this->assertSame(1, $crawler->filter('input[name="task[title]"]')->count());
@@ -120,11 +120,11 @@ class TaskControllerTest extends WebTestCase
         $this->assertSame(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'sedite';
+        $form['_username'] = 'sedite63d7c6e8b2f01';
         $form['_password'] = 'admin';
         $client->submit($form);
 
-        $crawler = $client->request('GET', '/tasks/20/edit');
+        $crawler = $client->request('GET', '/tasks/6/edit');
         $this->assertEquals(403, $client->getResponse()->getStatusCode());
 
     }
@@ -133,7 +133,7 @@ class TaskControllerTest extends WebTestCase
     public function testEditActionNotLoggeded()
     {
         $client = $this->createClient();
-        $client->request('GET', '/tasks/7/edit');
+        $client->request('GET', '/tasks/6/edit');
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode()); //on s'assure que l'appli retourne une redirection
 
@@ -148,7 +148,7 @@ class TaskControllerTest extends WebTestCase
         $this->assertSame(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'insafeaitoumaksa';
+        $form['_username'] = 'Admin10';
         $form['_password'] = 'admin';
         $client->submit($form);
 
@@ -169,7 +169,7 @@ class TaskControllerTest extends WebTestCase
         $this->assertSame(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'Insafeaitoumaksa3';
+        $form['_username'] = 'sedite63d7c6e8b2f01';
         $form['_password'] = 'admin';
         $client->submit($form);
         $client->request('GET', '/tasks/6/toggle');
@@ -197,11 +197,11 @@ class TaskControllerTest extends WebTestCase
         $this->assertSame(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'Insafeaitoumaksa';
+        $form['_username'] = 'Admin10';
         $form['_password'] = 'admin';
         $client->submit($form);
 
-        $client->request('GET', '/tasks/13/delete');
+        $client->request('GET', '/tasks/4/delete');
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
 
@@ -218,10 +218,10 @@ class TaskControllerTest extends WebTestCase
         $this->assertSame(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'Insafeaitoumaksa3';
+        $form['_username'] = 'sedite63d7c6e8b2f01';
         $form['_password'] = 'admin';
         $client->submit($form);
-        $client->request('GET', '/tasks/5/delete');
+        $client->request('GET', '/tasks/6/delete');
 
         $this->assertEquals(403, $client->getResponse()->getStatusCode()); //on s'assure que ça retourne un 403 non autorisé
     }

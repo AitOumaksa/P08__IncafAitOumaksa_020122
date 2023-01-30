@@ -19,13 +19,13 @@ class TaskVoter extends Voter
     }
 
 
-    protected function supports($attribute, $subject)
+    protected function supports($attribute, $subject) :bool
     {
         return in_array($attribute, [self::MANAGE], true)
             && $subject instanceof Task;
     }
 
-    protected function voteOnAttribute($attribute, $task, TokenInterface $token)
+    protected function voteOnAttribute($attribute, $task, TokenInterface $token) :bool
     {
         $user = $token->getUser();
         // if the user is anonymous, do not grant access

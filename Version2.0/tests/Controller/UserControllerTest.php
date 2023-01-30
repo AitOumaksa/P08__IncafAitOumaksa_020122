@@ -15,12 +15,12 @@ class UserControllerTest extends WebTestCase
         $this->assertSame(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'Insafeaitoumaksa';
+        $form['_username'] = 'Admin10';
         $form['_password'] = 'admin';
         $client->submit($form);
         $crawler = $client->request('GET', '/users');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Liste des utilisateurs")')->count());
+        $this->assertSame(1, $crawler->filter('html:contains("Liste des utilisateurs")')->count());
     }
 
     public function testCreateAction()
@@ -34,7 +34,7 @@ class UserControllerTest extends WebTestCase
         $form['user[password][first]'] = 'admin';
         $form['user[password][second]'] = 'admin';
         $form['user[email]'] = 'testedite' . uniqid() . '@gmail.com';
-        $form['user[roles][0]'] = 'ROLE_USER';
+        $form['user[roles][1]'] = 'ROLE_ADMIN';
         $client->submit($form);
 
         $client->request('GET', '/users');
@@ -52,11 +52,11 @@ class UserControllerTest extends WebTestCase
         $this->assertSame(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'Insafeaitoumaksa';
+        $form['_username'] = 'Admin10';
         $form['_password'] = 'admin';
         $client->submit($form);
 
-        $crawler = $client->request('GET', '/users/21/edit');
+        $crawler = $client->request('GET', '/users/1/edit');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
 
@@ -67,7 +67,7 @@ class UserControllerTest extends WebTestCase
         $this->assertSame(2, $crawler->filter('input[name="user[roles][]"]')->count());
 
         $form = $crawler->selectButton('Modifier')->form();
-        $form['user[username]'] = 'testedite'.uniqid();
+        $form['user[username]'] = 'testediteadmin'.uniqid();
         $form['user[password][first]'] = 'admin';
         $form['user[password][second]'] = 'admin';
         $form['user[email]'] = 'insafe'.uniqid().'@gmail.come';
@@ -87,14 +87,15 @@ class UserControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/login');
-        $crawler = $client->request('GET', '/login');
         $this->assertSame(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'Insafeaitoumaksa3';
+        $form['_username'] = 'sedite63d7c6e8b2f01';
         $form['_password'] = 'admin';
         $client->submit($form);
         $client->request('GET', '/users');
         self::assertEquals(403, $client->getResponse()->getStatusCode());
     }
+
+    
 }

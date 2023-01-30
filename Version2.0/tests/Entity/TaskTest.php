@@ -1,77 +1,78 @@
 <?php
 
 
-namespace Tests\AppBundle\Entity;
+namespace Tests\App\Entity;
 
 
-use AppBundle\Entity\Task;
-use AppBundle\Entity\User;
+use App\Entity\Task;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class TaskTest extends WebTestCase
 {
 
+    private $user;
+    private $task;
+
+    public function setUp(): void
+    {
+        $this->user = new User();
+        $this->task = new Task();
+    }
+
     public function testGetId()
     {
-        $user = new Task();
-        $this->assertNull($user->getId());
+        $this->assertNull($this->user->getId());
     }
 
     public function testGetSetTitle()
     {
-        $task = new Task();
-        $task->setTitle('Test title');
-        $this->assertEquals($task->getTitle(), 'Test title');
+        $this->task->setTitle('Test title');
+        $this->assertEquals($this->task->getTitle(), 'Test title');
     }
 
     public function testGetSetContent()
     {
-        $task = new Task();
-        $task->setContent('Test content');
-        $this->assertEquals($task->getContent(), 'Test content');
+        $this->task->setContent('Test content');
+        $this->assertEquals($this->task->getContent(), 'Test content');
     }
 
     public function testGetSetCreatedAt()
     {
-        $task = new Task();
-        $task->setCreatedAt(new \DateTime);
-        $this->assertInstanceOf(\DateTime::class, $task->getCreatedAt());
+        $this->task->setCreatedAt(new \DateTime);
+        $this->assertInstanceOf(\DateTime::class, $this->task->getCreatedAt());
     }
 
     public function testGetSetUser()
     {
-        $task = new Task();
-        $task->setUser(new User);
-        $this->assertInstanceOf(User::class, $task->getUser());
+        $this->task->setUser(new User);
+        $this->assertInstanceOf(User::class, $this->task->getUser());
     }
     public function testIsDone()
     {
-        $task = new Task();
-        $this->assertFalse($task->isDone());  
-        $task->setIsDone(true);
-        $this->assertTrue($task->isDone());
+        $this->assertFalse($this->task->isDone());  
+        $this->task->setIsDone(true);
+        $this->assertTrue($this->task->isDone());
     }
 
-    public function testToggle()
+    public function testToggleEntity()
     {
-        $task = new Task();
-        $this->assertFalse($task->isDone());
+        $this->assertFalse($this->task->isDone());
         
-        $task->toggle(true);
-        $this->assertTrue($task->isDone());
+        $this->task->toggle(true);
+        $this->assertTrue($this->task->isDone());
         
-        $task->toggle(false);
-        $this->assertFalse($task->isDone());
+        $this->task->toggle(false);
+        $this->assertFalse($this->task->isDone());
     }
 
     public function testGetSetIsDone()
     {
-        $task = new Task();
-        $task->setIsDone(false);
-        $this->assertFalse($task->getIsDone());
+        $this->task->setIsDone(false);
+        $this->assertFalse($this->task->getIsDone());
 
-        $task->setIsDone(true);
-        $this->assertTrue($task->getIsDone());
+        $this->task->setIsDone(true);
+        $this->assertTrue($this->task->getIsDone());
     }
     
 }
