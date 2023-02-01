@@ -5,15 +5,15 @@ Base du projet #8 : Améliorez un projet existant
 
 ## Livrable :
 
-        Un dossier docs/test-coverage.zips : analyse généré par PHPUnit indiquant le taux de couverture de code des tests réalisées.
+   Un dossier docs/test-coverage.zips : analyse généré par PHPUnit indiquant le taux de couverture de code des tests réalisées.
         
-        Un dossier UML : Diagrammes UML demandés.
+   Un dossier UML : Diagrammes UML demandés.
         
-        Un fichier docs/CONTRIBUTE.md : Documentation indiquant comment contribuer au projet.
+   Un fichier docs/CONTRIBUTE.md : Documentation indiquant comment contribuer au projet.
         
-        Un fichier docs/Documentation_technique.pdf : Documentation technique concernant l'authentification.
+   Un fichier docs/Documentation_technique.pdf : Documentation technique concernant l'authentification.
         
-        Un fichier docs/audit_qualité_performance.pdf : Rapport audit de qualité de code et de performance.
+   Un fichier docs/audit_qualité_performance.pdf : Rapport audit de qualité de code et de performance.
         
         
  ## Environnement de développement :
@@ -43,7 +43,7 @@ Base du projet #8 : Améliorez un projet existant
  
  3- Configurez vos variables d'environnement dans le fichier .env tel que :
  
-       La connexion à la base de données : 
+    La connexion à la base de données : 
        
               DATABASE_URL=mysql://db.username:db.password@127.0.0.1:3306/todo_and_co
               
