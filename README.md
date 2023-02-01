@@ -5,7 +5,7 @@ Base du projet #8 : Améliorez un projet existant
 
 ## Livrable :
 
-        Un dossier public/test-coverage.zips : analyse généré par PHPUnit indiquant le taux de couverture de code des tests réalisées.
+        Un dossier docs/test-coverage.zips : analyse généré par PHPUnit indiquant le taux de couverture de code des tests réalisées.
         
         Un dossier UML : Diagrammes UML demandés.
         
