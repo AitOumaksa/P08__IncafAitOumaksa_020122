@@ -14,7 +14,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
-    
     /**
      * @Route("/users", name="user_list")
      * @Security("is_granted('ROLE_ADMIN')")
@@ -35,9 +34,9 @@ class UserController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ( $form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $manager = $doctrine->getManager();
-            $user->setPassword( $userPasswordHasher->hashPassword(
+            $user->setPassword($userPasswordHasher->hashPassword(
                 $user,
                 $form->get('password')->getData()
             ));
@@ -62,7 +61,7 @@ class UserController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ( $form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $manager = $doctrine->getManager();
             $user->setPassword($userPasswordHasher->hashPassword(
                 $user,

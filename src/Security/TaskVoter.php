@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class TaskVoter extends Voter
 {
-    const MANAGE = 'manage';
+    public const MANAGE = 'manage';
     private $security;
 
     public function __construct(Security $security)
@@ -19,13 +19,13 @@ class TaskVoter extends Voter
     }
 
 
-    protected function supports($attribute, $subject) :bool
+    protected function supports($attribute, $subject): bool
     {
         return in_array($attribute, [self::MANAGE], true)
             && $subject instanceof Task;
     }
 
-    protected function voteOnAttribute($attribute, $task, TokenInterface $token) :bool
+    protected function voteOnAttribute($attribute, $task, TokenInterface $token): bool
     {
         $user = $token->getUser();
         // if the user is anonymous, do not grant access
@@ -40,12 +40,10 @@ class TaskVoter extends Voter
         switch ($attribute) {
             case self::MANAGE:
                 return $this->security->isGranted('ROLE_ADMIN')|| $user === $task->getUser();
-            
+
                 break;
         }
 
         return false;
     }
-
- 
 }

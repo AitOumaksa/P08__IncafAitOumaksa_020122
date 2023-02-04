@@ -10,10 +10,8 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
-
-    
     private UserPasswordHasherInterface $userPasswordHasher;
- 
+
     public function __construct(UserPasswordHasherInterface $userPasswordHasher)
     {
         $this->userPasswordHasher = $userPasswordHasher;
@@ -21,7 +19,6 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-
         $user = [
             1 => [
                 'email' => 'admin43@bilmo.com',
@@ -79,7 +76,7 @@ class AppFixtures extends Fixture
             $task->setUser($user);
             $task->setTitle($value['title']);
             $task->setContent($value['content']);
-            $task->setCreatedAt( new \DateTimeImmutable());
+            $task->setCreatedAt(new \DateTimeImmutable());
             $manager->persist($task);
         }
 

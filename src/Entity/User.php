@@ -41,7 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
-      /**
+    /**
      *
      * @ORM\OneToMany(targetEntity="App\Entity\Task", cascade={"persist"}, mappedBy="user")
      */
@@ -158,7 +158,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeTask(Task $task)
     {
-        
         if ($this->tasks->removeElement($task)) {
             // set the owning side to null (unless already changed)
             if ($task->getUser() === $this) {
@@ -179,4 +178,3 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->tasks;
     }
 }
-

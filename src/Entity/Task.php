@@ -40,11 +40,11 @@ class Task
      */
     private $isDone;
 
-     /**
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasks")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id" ,nullable=true)
-     */
+    /**
+    *
+    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasks")
+    * @ORM\JoinColumn(name="user_id", referencedColumnName="id" ,nullable=true)
+    */
     private $user;
 
     public function __construct()
