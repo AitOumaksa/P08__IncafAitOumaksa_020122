@@ -3,17 +3,18 @@ ToDoList
 
 Base du projet #8 : Améliorez un projet existant
 
+
 ## Livrable :
 
-   Un dossier docs/test-coverage.zips : analyse généré par PHPUnit indiquant le taux de couverture de code des tests réalisées.
+   Un dossier dans (branche version_2.0) docs/test-coverage.zips : analyse généré par PHPUnit indiquant le taux de couverture de code des tests réalisées.
         
-   Un dossier UML : Diagrammes UML demandés.
+   Un dossier dans (branche version_2.0) UML : Diagrammes UML demandés.
         
-   Un fichier docs/CONTRIBUTE.md : Documentation indiquant comment contribuer au projet.
+   Un fichier dans (branche version_2.0) docs/CONTRIBUTE.md : Documentation indiquant comment contribuer au projet.
         
-   Un fichier docs/Documentation_technique.pdf : Documentation technique concernant l'authentification.
+   Un fichier dans (branche version_2.0) docs/Documentation_technique.pdf : Documentation technique concernant l'authentification.
         
-   Un fichier docs/audit_qualité_performance.pdf : Rapport audit de qualité de code et de performance.
+   Un fichier dans (branche version_2.0) docs/audit_qualité_performance.pdf : Rapport audit de qualité de code et de performance.
         
         
  ## Environnement de développement :
